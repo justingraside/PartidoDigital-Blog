@@ -7,9 +7,9 @@ markdown: kramdown
 highlighter: rouge
 logo: false
 paginate: 15
-baseurl: /kasper/
-domain_name: 'http://leog.me'
+baseurl: /
+domain_name: 'http://blog.partidodigital.org.uy'
 google_analytics: 'UA-XXXXXXXX-X'
 gems: [jekyll-paginate]
 
-url: 'http://127.0.0.1:4000/kasper/'
+url: 'http://blog.partidodigital.org.uy'
