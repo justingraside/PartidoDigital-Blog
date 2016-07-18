@@ -1,0 +1,15 @@
+name: El blog <i>del Partido Digital</i>
+description: Transparencia y más participación. Una entrada a la vez.
+meta_description: "El blog del Partido Digital. Transparencia y más participación."
+title: El blog del Partido Digital
+
+markdown: kramdown
+highlighter: rouge
+logo: false
+paginate: 15
+baseurl: /kasper/
+domain_name: 'http://leog.me'
+google_analytics: 'UA-XXXXXXXX-X'
+gems: [jekyll-paginate]
+
+url: 'http://127.0.0.1:4000/kasper/'

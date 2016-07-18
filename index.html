@@ -1,1 +1,75 @@
-<h1>Blog en construcción</h1>
+---
+layout: default
+title: Inicio
+---
+
+<header class="main-header no-cover">
+    <nav class="main-nav overlay clearfix">
+            {% if page.logo %}
+                <a class="blog-logo" href="{{ site.baseurl }}">
+                    <img src="{{ page.logo }}" alt="Blog Logo" />
+                </a>
+            {% endif %}
+        <a class="subscribe-button icon-feed" href="{{ site.baseurl }}feed.xml">Subscribirse</a>
+    </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">{{ site.name }}</h1>
+            <h2 class="page-description">
+                {% if site.description %} {{ site.description }} <br/> {% endif %}
+            </h2>
+        </div>
+    </div>
+    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll hacia abajo</span></a>
+</header>
+
+
+<main id="content" class="content" role="main">
+    <div class="extra-pagination inner">
+        {% include pagination.html %}
+    </div>
+
+    {% for post in paginator.posts %}
+
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <!--{{ post.excerpt }} <br/><a class="read-more" href="{{ site.url }}{{ post.url }}">Leer &raquo;</a>-->
+			<a class="read-more" href="{{ site.url }}{{ post.url }}"><img src="{{ site.baseurl }}assets/images/posts/{{ post.image }}" /></a>
+        </section>
+        <footer class="post-meta">
+            {% assign author = site.data.authors[post.author] %}
+            <img class="author-thumb" src="http://s.gravatar.com/avatar/{{ author.gravatar }}" alt="Avatar del autor" nopin="nopin" />
+            {{ author.name }}
+            {% if post.categories.size > 0 %} 
+                {{ post.categories | array_to_sentence_string | prepend: 'en ' }} 
+            {% endif %}
+            <time class="post-date">
+                {% assign m = post.date | date: "%-m" %}
+				{{ post.date | date: "%-d" | append: ' de ' }}
+				{% case m %}
+				  {% when '1' %}Enero
+				  {% when '2' %}Febrero
+				  {% when '3' %}Marzo
+				  {% when '4' %}Abril
+				  {% when '5' %}Mayo
+				  {% when '6' %}Junio
+				  {% when '7' %}Julio
+				  {% when '8' %}Agosto
+				  {% when '9' %}Septiembre
+				  {% when '10' %}Octubre
+				  {% when '11' %}Noviembre
+				  {% when '12' %}Diciembre
+				{% endcase %}
+				{{ post.date | date: "%Y" | prepend: ' de ' }}
+            </time> 
+        </footer>
+    </article>
+
+    {% endfor %}
+
+    {% include pagination.html %}
+
+</main>

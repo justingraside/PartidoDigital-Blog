@@ -1,0 +1,87 @@
+---
+layout: default
+disqus: false
+archive: false
+post_class: post-template
+---
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav clearfix">
+		<h5>{{ site.name }}</h5>
+        <a class="back-button icon-arrow-left" href="{{ site.baseurl }}">Inicio</a>
+        <a class="subscribe-button icon-feed" href="{{ site.baseurl }}feed.xml">Subscribirse</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">{{ page.title }}</h1>
+            <section class="post-meta">
+                <time class="post-date">
+					{% assign m = page.date | date: "%-m" %}
+					{{ page.date | date: "%-d" | append: ' de ' }}
+					{% case m %}
+					  {% when '1' %}Enero
+					  {% when '2' %}Febrero
+					  {% when '3' %}Marzo
+					  {% when '4' %}Abril
+					  {% when '5' %}Mayo
+					  {% when '6' %}Junio
+					  {% when '7' %}Julio
+					  {% when '8' %}Agosto
+					  {% when '9' %}Septiembre
+					  {% when '10' %}Octubre
+					  {% when '11' %}Noviembre
+					  {% when '12' %}Diciembre
+					{% endcase %}
+					{{ page.date | date: "%Y" | prepend: ' de ' }}
+				</time>
+                {% if page.categories.size > 0 %}
+                    {{ page.categories | array_to_sentence_string | prepend: 'en ' }}
+                {% endif %}
+            </section>
+        </header>
+
+        <section class="post-content">
+			<img src="{{ site.baseurl }}assets/images/posts/{{ page.image }}" /><br/>
+            {{content}}
+        </section>
+
+        {% if page.archive %}
+        <section class="archive">
+            <h5>Archivo</h5>
+            <ul>
+                {% for post in site.posts %}
+                    <li><span>{{ post.date | date_to_string }}</span>  <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        <footer class="post-footer">
+            {% assign author = site.data.authors[page.author] %}
+            <figure class="author-image">
+                <a class="img" href="http://twitter.com/{{ author.twitter }}" style="background-image: url(http://s.gravatar.com/avatar/{{ author.gravatar }})">
+                <span class="hidden">Avatar de {{author.name}}</span></a>
+            </figure>
+            <section class="author">
+                <h4> {{ author.name }} </h4>
+                <p>{{ author.description }}</p>
+            </section>
+
+            <!-- Share links section -->
+            {% include share.html %}
+
+            <!-- Disqus comments -->
+            {% if page.disqus %}
+                {% include disqus.html %}
+            {% endif %}
+
+        </footer>
+
+    </article>
+
+</main>
